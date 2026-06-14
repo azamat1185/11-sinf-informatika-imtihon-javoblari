@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juft sonlar yig'indisi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        input, button {
+            padding: 8px;
+            margin: 5px 0;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h3>Juft sonlar hisoblagichi</h3>
+    <label for="n-qiymati"><strong>n</strong> sonini kiriting:</label>
+    <br>
+    <input type="number" id="n-qiymati" placeholder="Masalan: 10">
+    <button onclick="hisoblash()">Hisoblash</button>
+
+    <p id="xato-xabar" class="error"></p>
+    <p id="natija"></p>
+    <p id="sonlar-royxati"></p>
+</div>
+
+<script>
+    function hisoblash() {
+        // Kiritilgan qiymatni olish
+        const n = parseInt(document.getElementById('n-qiymati').value);
+        const xatoXabar = document.getElementById('xato-xabar');
+        const natija = document.getElementById('natija');
+        const sonlarRoyxati = document.getElementById('sonlar-royxati');
+
+        // Oldingi natijalarni tozalash
+        xatoXabar.innerText = "";
+        natija.innerText = "";
+        sonlarRoyxati.innerText = "";
+
+        // 1-MEZON: Manfiy va nolga teng n uchun ogohlantirish
+        if (isNaN(n) || n <= 0) {
+            xatoXabar.innerText = "Ogohlantirish: Iltimos, noldan katta musbat butun son kiriting!";
+            return; // Dasturni to'xtatish
+        }
+
+        let yigindi = 0;
+        let juftSonlar = [];
+
+        // 2 va 3-MEZON: Yig'indini hisoblash va ro'yxatni yig'ish
+        for (let i = 1; i <= n; i++) {
+            if (i % 2 === 0) {
+                yigindi += i;          // Yig'indiga qo'shish
+                juftSonlar.push(i);    // Ro'yxatga saqlash
+            }
+        }
+
+        // Natijalarni ekranga chiqarish
+        natija.innerHTML = "<strong>Yig'indi:</strong> " + yigindi;
+        sonlarRoyxati.innerHTML = "<strong>Qo'shilgan juft sonlar:</strong> " + juftSonlar.join(', ');
+    }
+</script>
+
+</body>
+</html>

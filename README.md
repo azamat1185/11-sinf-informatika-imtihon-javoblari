@@ -1,0 +1,1 @@
+# 11-sinf-informatika-imtihon-javoblari
